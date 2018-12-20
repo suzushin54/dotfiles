@@ -1,4 +1,5 @@
 #!/bin/bash
 
-ln -s .vimrc ~/.vimrc
-ln -s .tmux.conf ~/.tmux.conf
+ln -s ~/rep/dotfiles/.vimrc ~/.vimrc
+ln -s ~/rep/dotfiles/.zshrc ~/.zshrc
+ln -s ~/rep/dotfiles/.tmux.conf ~/.tmux.conf
