@@ -27,3 +27,12 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH:/bin
 export PATH=$PATH:/usr/local/go/bin
 
+# The next line updates PATH for the Google Cloud SDK.
+source '/Users/szk416/google-cloud-sdk/path.zsh.inc'
+
+# The next line enables bash completion for gcloud.
+source '/Users/szk416/google-cloud-sdk/completion.zsh.inc'
+
+source <(kubectl completion zsh)
+alias kube=kubectl
+complete -o default -F __start_kubectl kube
