@@ -21,6 +21,7 @@ eval "$(rbenv init -)"
 
 alias bat="nocorrect bat"
 alias npm="nocorrect npm"
+alias tree="nocorrect tree"
 
 # Golang
 export GOPATH=$HOME/go
@@ -34,5 +35,8 @@ source '/Users/szk416/google-cloud-sdk/path.zsh.inc'
 source '/Users/szk416/google-cloud-sdk/completion.zsh.inc'
 
 source <(kubectl completion zsh)
-alias kube=kubectl
-complete -o default -F __start_kubectl kube
+alias k=kubectl
+complete -o default -F __start_kubectl k
+
+# For kubectl_aliases
+[ -f ~/.kubectl_aliases ] && source ~/.kubectl_aliases
