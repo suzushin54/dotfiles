@@ -68,3 +68,12 @@ set autowrite
 call plug#begin()
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 call plug#end()
+
+" LeaderをSpace keyにする
+let mapleader = "\<Space>"
+
+" <Space>wで保存
+nnoremap <Leader>w :w<CR>
+
+" <Space><Space>でビジュアルラインモードに切り替え
+nmap <Leader><Leader> V
