@@ -12,6 +12,26 @@ set hidden
 " 入力中のコマンドをステータスに表示する
 set showcmd
 
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" --- Vundle ---
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" !! write plugins here !!
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'terryma/vim-expand-region'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+" Customize the key mapping
+map K <Plug>(expand_region_expand)
+map J <Plug>(expand_region_shrink)
+" --- Vundle ---
 
 " 見た目系
 " 行番号を表示
