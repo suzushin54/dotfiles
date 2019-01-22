@@ -23,6 +23,8 @@ call vundle#begin()
 " !! write plugins here !!
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'terryma/vim-expand-region'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
