@@ -22,7 +22,7 @@ export PATH=$PATH:$HOME/.nodebrew/current/bin
 
 # Golang
 export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH:/bin
+export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/usr/local/go/bin
 
 # Google Cloud SDK.
