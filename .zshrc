@@ -114,6 +114,9 @@ alias tree="nocorrect tree"
 alias tree="pwd;find . | sort | sed '1d;s/^\.//;s/\/\([^/]*\)$/|--\1/;s/\/[^/|]*/| /g'"
 alias bat="nocorrect bat"
 alias compose=docker-compose
+alias cu="docker-compose up"
+alias cud="docker-compose up -d"
+alias cdown="docker-compose down"
 
 source <(kubectl completion zsh)
 alias k=kubectl
