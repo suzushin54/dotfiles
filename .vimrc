@@ -35,6 +35,9 @@ map K <Plug>(expand_region_expand)
 map J <Plug>(expand_region_shrink)
 " --- Vundle ---
 
+" Disable folding in markdown
+let g:vim_markdown_folding_disabled = 1
+
 " 見た目系
 " 行番号を表示
 set number
