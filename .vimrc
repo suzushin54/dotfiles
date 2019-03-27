@@ -110,3 +110,10 @@ nnoremap <Leader>w :w<CR>
 
 " <Space><Space>でビジュアルラインモードに切り替え
 nmap <Leader><Leader> V
+
+" swpファイル出力先
+set directory=$HOME/.vim/swp_files/
+" バックアップファイル出力先
+set backupdir=$HOME/.vim/tilde_files/
+" undoファイル出力先
+set undodir=$HOME/.vim/un_files/
