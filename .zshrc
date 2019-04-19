@@ -101,7 +101,8 @@ zstyle ':vcs_info:git:*' unstagedstr "%F{yellow}+"
 zstyle ':vcs_info:*' formats "%F{cyan}%c%u[%b]%f"
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
 precmd() { vcs_info }
-PROMPT='%m:%F{green}%~%f %n %F{yellow}$%f '
+PROMPT='%m:%F{green}%~%f %n %F{yellow}
+$%f '
 RPROMPT='${vcs_info_msg_0_}'
 
 # alias
