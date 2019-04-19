@@ -11,6 +11,13 @@ export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 export PATH=$PATH:"~/.composer/vendor/bin"
 export PATH=$PATH:"$HOME/pear/bin"
 
+# phpenv
+export PHPENV_ROOT="$HOME/.phpenv"
+export PATH="$PHPENV_ROOT/bin:$PATH"
+eval "$(phpenv init -)"
+
+export PATH="/usr/local/opt/bison/bin:$PATH"
+
 # added by Anaconda3 5.1.0 
 export PATH="$HOME/anaconda3/bin:$PATH"
 
@@ -64,6 +71,9 @@ if [ -e /usr/local/share/zsh-completions ]; then
     setopt list_packed
 # 補完候補一覧をカラー表示
     zstyle ':completion:*' list-colors ''
+
+# 履歴から自動補完
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # cdコマンド省略
 setopt auto_cd

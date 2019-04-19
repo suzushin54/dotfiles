@@ -17,7 +17,7 @@ filetype off                  " required
 
 " --- Vundle ---
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=/Users/shinichiro.suzuki/.vim/bundle/Vundle.vim/
 call vundle#begin()
 
 " !! write plugins here !!
@@ -92,6 +92,7 @@ set autowrite
 
 call plug#begin()
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+Plug 'terryma/vim-multiple-cursors'
 call plug#end()
 
 " quick fix list内のerrorを移動するショートカット
