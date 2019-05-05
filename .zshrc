@@ -7,6 +7,12 @@ setopt nonomatch
 export PATH="/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 
+# Vim
+export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
+alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+export PATH=$PATH:$HOME/.nodebrew/current/bin
+
 # php
 export PATH=$PATH:"~/.composer/vendor/bin"
 export PATH=$PATH:"$HOME/pear/bin"
@@ -21,11 +27,8 @@ export PATH="/usr/local/opt/bison/bin:$PATH"
 # added by Anaconda3 5.1.0 
 export PATH="$HOME/anaconda3/bin:$PATH"
 
-# Vim
-export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
-alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
-alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
-export PATH=$PATH:$HOME/.nodebrew/current/bin
+# Rust lang's compiler and pkg manager
+export PATH="$HOME/.cargo/bin:$PATH"
 
 # Golang
 export GOPATH=$HOME/go
