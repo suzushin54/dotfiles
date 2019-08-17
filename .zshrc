@@ -111,6 +111,7 @@ $%f '
 RPROMPT='${vcs_info_msg_0_}'
 
 # alias
+alias cls="clear"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
