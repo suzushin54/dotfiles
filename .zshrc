@@ -7,6 +7,9 @@ setopt nonomatch
 export PATH="/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 
+# Tool that wraps git
+eval "$(hub alias -s)"
+
 # Vim
 export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
 alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
@@ -131,11 +134,13 @@ alias npm="nocorrect npm"
 alias tree="nocorrect tree"
 alias tree="pwd;find . | sort | sed '1d;s/^\.//;s/\/\([^/]*\)$/|--\1/;s/\/[^/|]*/| /g'"
 alias bat="nocorrect bat"
-alias compose=docker-compose
+alias dps="docker ps"
+alias compose="docker-compose"
+alias cps="docker-compose ps"
 alias cu="docker-compose up"
 alias cud="docker-compose up -d"
-alias cdown="docker-compose down"
 alias cdk="nocorrect cdk"
+alias cdn="docker-compose down"
 
 source <(kubectl completion zsh)
 alias k=kubectl
