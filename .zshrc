@@ -139,6 +139,7 @@ alias cps="compose ps"
 alias cu="docker-compose up"
 alias cud="docker-compose up -d"
 alias cdn="docker-compose down"
+alias gbd="git branch | grep -v 'master\|staging\|develop' | xargs git branch -D"
 
 source <(kubectl completion zsh)
 alias k=kubectl
