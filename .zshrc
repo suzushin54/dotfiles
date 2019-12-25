@@ -114,6 +114,7 @@ $%f '
 RPROMPT='${vcs_info_msg_0_}'
 
 # alias
+alias md="mkdir"
 alias cls="clear"
 alias ..="cd .."
 alias ...="cd ../.."
@@ -134,10 +135,11 @@ alias tree="nocorrect tree"
 alias tree="pwd;find . | sort | sed '1d;s/^\.//;s/\/\([^/]*\)$/|--\1/;s/\/[^/|]*/| /g'"
 alias bat="nocorrect bat"
 alias dps="docker ps"
-alias compose=docker-compose
-alias cps="compose ps"
+alias compose="docker-compose"
+alias cps="docker-compose ps"
 alias cu="docker-compose up"
 alias cud="docker-compose up -d"
+alias cdk="nocorrect cdk"
 alias cdn="docker-compose down"
 alias gbd="git branch | grep -v 'master\|staging\|develop' | xargs git branch -D"
 
@@ -155,3 +157,13 @@ function select-history() {
 }
 zle -N select-history
 bindkey '^r' select-history
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh

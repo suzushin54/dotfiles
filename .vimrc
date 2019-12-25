@@ -15,6 +15,13 @@ set showcmd
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+" netrw
+filetype plugin on
+let g:netrw_liststyle=1
+let g:netrw_sizestyle="H"
+let g:netrw_timefmt="%Y/%m/%d(%a) %H:%M:%S"
+let g:netrw_preview=1
+
 " --- Vundle ---
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim/
@@ -25,6 +32,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'terryma/vim-expand-region'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'leafgarland/typescript-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
