@@ -141,6 +141,15 @@ alias cu="docker-compose up"
 alias cud="docker-compose up -d"
 alias cdk="nocorrect cdk"
 alias cdn="docker-compose down"
+alias pull="git pull"
+alias push="git push"
+alias stash="git stash"
+alias status="git status"
+alias commit="git commit"
+alias gc="git checkout"
+alias ga="git add"
+alias gl="git log"
+
 
 source <(kubectl completion zsh)
 alias k=kubectl
