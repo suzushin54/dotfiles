@@ -149,7 +149,7 @@ alias commit="git commit"
 alias gc="git checkout"
 alias ga="git add"
 alias gl="git log"
-
+alias gbd="git branch | grep -v 'master\|staging\|develop' | xargs git branch -D"
 
 source <(kubectl completion zsh)
 alias k=kubectl
