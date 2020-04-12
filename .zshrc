@@ -92,8 +92,8 @@ setopt auto_pushd
 # pushdから重複を削除
 setopt pushd_ignore_dups
 
-# cdの後にlsを実行
-chpwd() { ls -lha }
+# cdの後にexaを実行
+chpwd() { exa --color-scale --git --git-ignore --time-style=iso -@ -a -B -T -F -h -l -L=1 }
 
 # コマンドのスペルを訂正
 setopt correct
