@@ -121,8 +121,8 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
-alias ls='ls -aF'
-alias ll='ls -l'
+alias ls='exa --color-scale --git --git-ignore --time-style=iso -@ -a -B -T -F -h -l -L=1'
+alias ll='exa --color-scale --git --git-ignore --time-style=iso -@ -a -B -T -F -h -l -L=1'
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
