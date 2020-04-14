@@ -23,10 +23,8 @@ export PATH=$PATH:"~/.composer/vendor/bin"
 export PATH=$PATH:"$HOME/pear/bin"
 
 # phpenv
-export PHPENV_ROOT="$HOME/.phpenv"
-export PATH="$PHPENV_ROOT/bin:$PATH"
-eval "$(phpenv init -)"
-
+export PATH="/usr/local/opt/php@7.3/bin:$PATH"
+export PATH="/usr/local/opt/php@7.3/sbin:$PATH"
 export PATH="/usr/local/opt/bison/bin:$PATH"
 
 # added by Anaconda3 5.1.0 
@@ -150,6 +148,8 @@ alias gc="git checkout"
 alias ga="git add"
 alias gl="git log"
 alias gbd="git branch | grep -v 'master\|staging\|develop' | xargs git branch -D"
+
+alias medis="cd /Applications/medis && nohup npm start &>/dev/null &"
 
 source <(kubectl completion zsh)
 alias k=kubectl
