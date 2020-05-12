@@ -18,6 +18,10 @@ export PATH=$PATH:$HOME/.nodebrew/current/bin
 export PATH="${HOME}/.nodenv/bin:${PATH}"
 eval "$(nodenv init -)"
 
+# IDE
+export PATH="/usr/local/bin/pstorm:$PATH"
+export PATH="/usr/local/bin/goland:$PATH"
+
 # php
 export PATH=$PATH:"~/.composer/vendor/bin"
 export PATH=$PATH:"$HOME/pear/bin"
