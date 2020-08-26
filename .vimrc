@@ -100,11 +100,6 @@ nmap <Esc><Esc> :nohlsearch<CR><Esc>
 " make を実行したらファイルの内容を自動的に保存
 set autowrite
 
-call plug#begin()
-Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-Plug 'terryma/vim-multiple-cursors'
-call plug#end()
-
 " quick fix list内のerrorを移動するショートカット
 map <C-n> :cnext<CR>
 map <C-m> :cprevious<CR>
