@@ -18,10 +18,6 @@ export PATH=$PATH:$HOME/.nodebrew/current/bin
 export PATH="${HOME}/.nodenv/bin:${PATH}"
 eval "$(nodenv init -)"
 
-# IDE
-export PATH="/usr/local/bin/pstorm:$PATH"
-export PATH="/usr/local/bin/goland:$PATH"
-
 # php
 export PATH=$PATH:"~/.composer/vendor/bin"
 export PATH=$PATH:"$HOME/pear/bin"
@@ -30,6 +26,9 @@ export PATH=$PATH:"$HOME/pear/bin"
 export PATH="/usr/local/opt/php@7.3/bin:$PATH"
 export PATH="/usr/local/opt/php@7.3/sbin:$PATH"
 export PATH="/usr/local/opt/bison/bin:$PATH"
+
+# pyenv
+eval "$(pyenv init -)"
 
 # added by Anaconda3 5.1.0 
 export PATH="$HOME/anaconda3/bin:$PATH"
