@@ -10,6 +10,9 @@ export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 # Tool that wraps git
 eval "$(hub alias -s)"
 
+# IntelliJ IDEA Launcher
+export PATH="/usr/local/bin/idea:$PATH"
+
 # Vim
 export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
 alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
@@ -180,3 +183,25 @@ bindkey '^r' select-history
 # tabtab source for slss package
 # uninstall by removing these lines or running `tabtab uninstall slss`
 [[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
+
+function ghqcd {
+  args=()
+  if [ $# -ne 0 ]; then
+    match=`ghq list | grep $1`
+    if [ `echo $match | wc -l` -eq "1" ]; then
+      cd $(ghq root)/${match}
+      return
+    fi
+    args=("--query" "$1")
+  fi
+  cd $(ghq root)/$(ghq list | peco ${args[@]})
+}
+function _ghqcd {
+  arr=($(ghq list | grep -o -e "${words[CURRENT]}.*$"))
+  _values Directories ${arr[@]}
+}
+compdef _ghqcd ghqcd
+
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
+
