@@ -31,7 +31,9 @@ export PATH="/usr/local/opt/php@7.3/sbin:$PATH"
 export PATH="/usr/local/opt/bison/bin:$PATH"
 
 # pyenv
-eval "$(pyenv init -)"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
 
 # added by Anaconda3 5.1.0 
 export PATH="$HOME/anaconda3/bin:$PATH"
@@ -44,6 +46,13 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/usr/local/go/bin
 
+# Flutter
+export PATH="$PATH":"$HOME/.pub-cache/bin"
+
+# direnv
+eval "$(direnv hook zsh)"
+
+
 # Google Cloud SDK.
 if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then
       source "$HOME/google-cloud-sdk/path.zsh.inc";
@@ -52,6 +61,9 @@ fi
 if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then
       source "$HOME/google-cloud-sdk/completion.zsh.inc";
 fi
+
+# Flutter
+export PATH="$HOME/flutter/bin:$PATH"
 
 export CLICOLOR=1
 export LSCOLORS=DxGxcxdxCxegedabagacad
