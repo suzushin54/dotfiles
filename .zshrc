@@ -52,6 +52,8 @@ export PATH="$PATH":"$HOME/.pub-cache/bin"
 # direnv
 eval "$(direnv hook zsh)"
 
+# jump
+eval "$(jump shell zsh)"
 
 # Google Cloud SDK.
 if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then
