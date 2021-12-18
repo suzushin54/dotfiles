@@ -47,7 +47,7 @@ export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/usr/local/go/bin
 
 # Flutter
-export PATH="$PATH":"$HOME/.pub-cache/bin"
+export PATH="$PATH:$HOME/development/flutter/bin"
 
 # direnv
 eval "$(direnv hook zsh)"
