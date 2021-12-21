@@ -46,6 +46,9 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/usr/local/go/bin
 
+# Protobuf
+export PATH=$PATH:/usr/local/bin/protoc
+
 # Flutter
 export PATH="$PATH:$HOME/development/flutter/bin"
 
