@@ -181,7 +181,7 @@ alias medis="cd /Applications/medis && nohup npm start &>/dev/null &"
 
 source <(kubectl completion zsh)
 alias k=kubectl
-complete -o default -F __start_kubectl k
+# complete -o default -F __start_kubectl k
 
 # For kubectl_aliases
 [ -f ~/.kubectl_aliases ] && source ~/.kubectl_aliases
