@@ -44,7 +44,9 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # Golang
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:/usr/local/go/bin
+# export PATH=$PATH:/usr/local/go/bin
+export GOROOT=$(go1.18 env GOROOT)
+export PATH=${GOROOT}/bin:${PATH}
 
 # Protobuf
 export PATH=$PATH:/usr/local/bin/protoc
