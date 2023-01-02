@@ -3,7 +3,7 @@ export LANG=ja_JP.UTF-8
 
 #User configuration
 setopt nonomatch
- 
+
 export PATH="/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 
@@ -18,8 +18,6 @@ export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
 alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
 alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
 export PATH=$PATH:$HOME/.nodebrew/current/bin
-export PATH="${HOME}/.nodenv/bin:${PATH}"
-eval "$(nodenv init -)"
 
 # php
 export PATH=$PATH:"~/.composer/vendor/bin"
@@ -35,7 +33,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 
-# added by Anaconda3 5.1.0 
+# added by Anaconda3 5.1.0
 export PATH="$HOME/anaconda3/bin:$PATH"
 
 # Rust lang's compiler and pkg manager
@@ -44,9 +42,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # Golang
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
-# export PATH=$PATH:/usr/local/go/bin
-export GOROOT=$(go1.18 env GOROOT)
-export PATH=${GOROOT}/bin:${PATH}
+export PATH=$PATH:/usr/local/go/bin
 
 # Protobuf
 export PATH=$PATH:/usr/local/bin/protoc
@@ -68,9 +64,6 @@ fi
 if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then
       source "$HOME/google-cloud-sdk/completion.zsh.inc";
 fi
-
-# Flutter
-export PATH="$HOME/flutter/bin:$PATH"
 
 export CLICOLOR=1
 export LSCOLORS=DxGxcxdxCxegedabagacad
