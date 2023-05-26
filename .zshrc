@@ -4,8 +4,11 @@ export LANG=ja_JP.UTF-8
 #User configuration
 setopt nonomatch
 
-export PATH="/usr/bin:/bin:/usr/sbin:/sbin"
+# export PATH="/usr/bin:/bin:/usr/sbin:/sbin"
+# export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+export PATH="/Users/$USER/homebrew/bin:$PATH"
 
 # Tool that wraps git
 eval "$(hub alias -s)"
@@ -97,7 +100,8 @@ if [ -e /usr/local/share/zsh-completions ]; then
     zstyle ':completion:*' list-colors ''
 
 # 履歴から自動補完
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /Users/$USER/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+#source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # cdコマンド省略
 setopt auto_cd
@@ -183,7 +187,7 @@ alias k=kubectl
 
 # Search in zshell history
 function select-history() {
-  BUFFER=$(history -n -r 1 | fzf --no-sort +m --query "$LBUFFER" --prompt="History > ")
+  BUFFER=$(history -n 1 | awk '!a[$0]++' | fzf --exact --no-sort +m --query "$LBUFFER" --prompt="History > ")
   CURSOR=$#BUFFER
 }
 zle -N select-history
@@ -222,3 +226,15 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+set-awssession-token() {
+    profile_name=$1
+    code=$2
+
+    mfa_device=$(awk '/'$profile_name'/{flag=1;next}/\[/{flag=0}flag' ~/.aws/config | grep mfa-device | cut -f 3 -d " ")
+    session_token=$(aws sts get-session-token --serial-number $mfa_device --token-code $code --profile $profile_name)
+    export AWS_ACCESS_KEY_ID=$(echo $session_token | jq -r .Credentials.AccessKeyId)
+    export AWS_SECRET_ACCESS_KEY=$(echo $session_token | jq -r .Credentials.SecretAccessKey)
+    export AWS_SESSION_TOKEN=$(echo $session_token | jq -r .Credentials.SessionToken)
+}
+
