@@ -1,14 +1,12 @@
 # Environment variable
 export LANG=ja_JP.UTF-8
 
-#User configuration
+# User configuration
 setopt nonomatch
 
-# export PATH="/usr/bin:/bin:/usr/sbin:/sbin"
-# export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
-
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
-export PATH="/Users/$USER/homebrew/bin:$PATH"
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Tool that wraps git
 eval "$(hub alias -s)"
@@ -25,19 +23,6 @@ export PATH=$PATH:$HOME/.nodebrew/current/bin
 # php
 export PATH=$PATH:"~/.composer/vendor/bin"
 export PATH=$PATH:"$HOME/pear/bin"
-
-# phpenv
-export PATH="/usr/local/opt/php@7.3/bin:$PATH"
-export PATH="/usr/local/opt/php@7.3/sbin:$PATH"
-export PATH="/usr/local/opt/bison/bin:$PATH"
-
-# pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-
-# added by Anaconda3 5.1.0
-export PATH="$HOME/anaconda3/bin:$PATH"
 
 # Rust lang's compiler and pkg manager
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -100,8 +85,7 @@ if [ -e /usr/local/share/zsh-completions ]; then
     zstyle ':completion:*' list-colors ''
 
 # 履歴から自動補完
-source /Users/$USER/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-#source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # cdコマンド省略
 setopt auto_cd
@@ -221,11 +205,64 @@ function _ghqcd {
 }
 compdef _ghqcd ghqcd
 
-
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
 
+# RTX configuration - a Rust-based polyglot runtime version manager for efficient language version management
+export PATH="$HOME/.rtx/bin:$PATH"
+eval "$(rtx shell hook)"
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export RTX_SHELL=zsh
+export __RTX_ORIG_PATH="$PATH"
+
+rtx() {
+  local command
+  command="${1:-}"
+  if [ "$#" = 0 ]; then
+    command /opt/homebrew/bin/rtx
+    return
+  fi
+  shift
+
+  case "$command" in
+  deactivate|s|shell)
+    # if argv doesn't contains -h,--help
+    if [[ ! " $@ " =~ " --help " ]] && [[ ! " $@ " =~ " -h " ]]; then
+      eval "$(command /opt/homebrew/bin/rtx "$command" "$@")"
+      return $?
+    fi
+    ;;
+  esac
+  command /opt/homebrew/bin/rtx "$command" "$@"
+}
+
+_rtx_hook() {
+  eval "$(/opt/homebrew/bin/rtx hook-env -s zsh)";
+}
+typeset -ag precmd_functions;
+if [[ -z "${precmd_functions[(r)_rtx_hook]+1}" ]]; then
+  precmd_functions=( _rtx_hook ${precmd_functions[@]} )
+fi
+typeset -ag chpwd_functions;
+if [[ -z "${chpwd_functions[(r)_rtx_hook]+1}" ]]; then
+  chpwd_functions=( _rtx_hook ${chpwd_functions[@]} )
+fi
+
+if [ -z "${_rtx_cmd_not_found:-}" ]; then
+    _rtx_cmd_not_found=1
+    test -n "$(declare -f command_not_found_handler)" && eval "${_/command_not_found_handler/_command_not_found_handler}"
+
+    function command_not_found_handler() {
+        if /opt/homebrew/bin/rtx hook-not-found -s zsh "$1"; then
+          _rtx_hook
+          "$@"
+        elif [ -n "$(declare -f _command_not_found_handler)" ]; then
+            _command_not_found_handler "$@"
+        else
+            echo "zsh: command not found: $1" >&2
+            return 127
+        fi
+    }
+fi
 
 set-awssession-token() {
     profile_name=$1
