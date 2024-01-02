@@ -1,4 +1,3 @@
-# Environment variable
 export LANG=ja_JP.UTF-8
 
 # User configuration
@@ -20,7 +19,6 @@ export PATH="/usr/local/bin/idea:$PATH"
 # Vim
 export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
 alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
-export PATH=$PATH:$HOME/.nodebrew/current/bin
 
 # php
 export PATH=$PATH:"~/.composer/vendor/bin"
@@ -57,10 +55,6 @@ fi
 
 export CLICOLOR=1
 export LSCOLORS=DxGxcxdxCxegedabagacad
-
-# disable in future release
-export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-export PATH="$HOME/.anyenv/bin:$PATH"
 
 # ヒストリの設定
 HISTFILE=~/.zsh_history
@@ -162,13 +156,12 @@ alias gr="git restore"
 alias gcp="git cherry-pick"
 alias gbd="git branch | grep -v 'master\|staging\|develop' | xargs git branch -D"
 
+# Modern GUI for Redis
 alias medis="cd /Applications/medis && nohup npm start &>/dev/null &"
 
+# For kubectl_aliases
 source <(kubectl completion zsh)
 alias k=kubectl
-# complete -o default -F __start_kubectl k
-
-# For kubectl_aliases
 [ -f ~/.kubectl_aliases ] && source ~/.kubectl_aliases
 
 # Search in zshell history
@@ -219,3 +212,11 @@ set-awssession-token() {
     export AWS_SECRET_ACCESS_KEY=$(echo $session_token | jq -r .Credentials.SecretAccessKey)
     export AWS_SESSION_TOKEN=$(echo $session_token | jq -r .Credentials.SessionToken)
 }
+
+# pnpm
+export PNPM_HOME="$HOME/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
