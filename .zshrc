@@ -8,6 +8,9 @@ export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
+# RTX configuration - a Rust-based polyglot runtime version manager for efficient language version management
+eval "$(~/.local/share/rtx/bin/rtx activate zsh)"
+
 # Tool that wraps git
 eval "$(hub alias -s)"
 
@@ -17,7 +20,6 @@ export PATH="/usr/local/bin/idea:$PATH"
 # Vim
 export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
 alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
-alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
 export PATH=$PATH:$HOME/.nodebrew/current/bin
 
 # php
@@ -207,63 +209,6 @@ compdef _ghqcd ghqcd
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
 
-# RTX configuration - a Rust-based polyglot runtime version manager for efficient language version management
-export PATH="$HOME/.rtx/bin:$PATH"
-eval "$(rtx shell hook)"
-
-export RTX_SHELL=zsh
-export __RTX_ORIG_PATH="$PATH"
-
-rtx() {
-  local command
-  command="${1:-}"
-  if [ "$#" = 0 ]; then
-    command /opt/homebrew/bin/rtx
-    return
-  fi
-  shift
-
-  case "$command" in
-  deactivate|s|shell)
-    # if argv doesn't contains -h,--help
-    if [[ ! " $@ " =~ " --help " ]] && [[ ! " $@ " =~ " -h " ]]; then
-      eval "$(command /opt/homebrew/bin/rtx "$command" "$@")"
-      return $?
-    fi
-    ;;
-  esac
-  command /opt/homebrew/bin/rtx "$command" "$@"
-}
-
-_rtx_hook() {
-  eval "$(/opt/homebrew/bin/rtx hook-env -s zsh)";
-}
-typeset -ag precmd_functions;
-if [[ -z "${precmd_functions[(r)_rtx_hook]+1}" ]]; then
-  precmd_functions=( _rtx_hook ${precmd_functions[@]} )
-fi
-typeset -ag chpwd_functions;
-if [[ -z "${chpwd_functions[(r)_rtx_hook]+1}" ]]; then
-  chpwd_functions=( _rtx_hook ${chpwd_functions[@]} )
-fi
-
-if [ -z "${_rtx_cmd_not_found:-}" ]; then
-    _rtx_cmd_not_found=1
-    test -n "$(declare -f command_not_found_handler)" && eval "${_/command_not_found_handler/_command_not_found_handler}"
-
-    function command_not_found_handler() {
-        if /opt/homebrew/bin/rtx hook-not-found -s zsh "$1"; then
-          _rtx_hook
-          "$@"
-        elif [ -n "$(declare -f _command_not_found_handler)" ]; then
-            _command_not_found_handler "$@"
-        else
-            echo "zsh: command not found: $1" >&2
-            return 127
-        fi
-    }
-fi
-
 set-awssession-token() {
     profile_name=$1
     code=$2
@@ -274,4 +219,3 @@ set-awssession-token() {
     export AWS_SECRET_ACCESS_KEY=$(echo $session_token | jq -r .Credentials.SecretAccessKey)
     export AWS_SESSION_TOKEN=$(echo $session_token | jq -r .Credentials.SessionToken)
 }
-
