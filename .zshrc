@@ -7,8 +7,8 @@ export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# RTX configuration - a Rust-based polyglot runtime version manager for efficient language version management
-eval "$(~/.local/share/rtx/bin/rtx activate zsh)"
+# mise configuration - a Rust-based polyglot runtime version manager for efficient language version management
+eval "$(/${HOME}/.local/bin/mise activate zsh)"
 
 # Tool that wraps git
 eval "$(hub alias -s)"
