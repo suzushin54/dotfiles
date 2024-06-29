@@ -8,7 +8,8 @@ export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # mise configuration - a Rust-based polyglot runtime version manager for efficient language version management
-eval "$(/${HOME}/.local/bin/mise activate zsh)"
+eval "$(mise activate zsh)"
+export PATH="$HOME/.local/share/mise/shims:$PATH"
 
 # Tool that wraps git
 eval "$(hub alias -s)"
@@ -29,6 +30,7 @@ export PATH=$PATH:"$HOME/pear/bin"
 
 # Rust lang's compiler and pkg manager
 export PATH="$HOME/.cargo/bin:$PATH"
+source "$HOME/.cargo/env"
 
 # Golang
 export GOPATH=$HOME/go
@@ -37,6 +39,9 @@ export PATH=$PATH:/usr/local/go/bin
 
 # Protobuf
 export PATH=$PATH:/usr/local/bin/protoc
+
+# Terraform
+export PATH="${HOME}/.local/share/mise/installs/terraform/1.8.4/bin:$PATH"
 
 # Flutter
 export PATH="$PATH:$HOME/development/flutter/bin"
