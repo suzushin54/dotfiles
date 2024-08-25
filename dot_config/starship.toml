@@ -1,0 +1,105 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Basic configuration
+add_newline = true
+format = """
+$username\
+$directory\
+$git_branch\
+$git_status\
+$php\
+$golang\
+$rust\
+$nodejs\
+$aws\
+$gcloud\
+$cmd_duration\
+$line_break\
+$character"""
+
+# Prompt character
+[character]
+success_symbol = "[λ](bold green)"
+error_symbol = "[λ](bold red)"
+
+# Directory display
+[directory]
+truncation_length = 8
+truncate_to_repo = false
+style = "bold cyan"
+
+# Git branch
+[git_branch]
+symbol = " "
+format = '[$symbol$branch(:$remote_branch)]($style) '
+style = "bold purple"
+
+# Git status
+[git_status]
+format = '([$all_status$ahead_behind]($style) )'
+conflicted = "🚩 "
+ahead = "🚀 "
+behind = "😰 "
+diverged = "😵 "
+up_to_date = "✅ "
+untracked = "❓ "
+stashed = "📦 "
+modified = "🖊️"
+staged = "➕ "
+renamed = "🚚 "
+deleted = "🗑 "
+
+# Language version display
+[php]
+symbol = " "
+format = '[$symbol($version )]($style)'
+
+[golang]
+symbol = " "
+format = '[$symbol($version )]($style)'
+
+[rust]
+symbol = " "
+format = '[$symbol($version )]($style)'
+
+[nodejs]
+symbol = " "
+format = '[$symbol($version )]($style)'
+
+# Cloud providers
+[aws]
+symbol = " "
+format = '[$symbol($profile ) ]($style)'
+style = "bold yellow"
+
+[gcloud]
+symbol = " "
+format = '[$symbol($project)]($style) '
+style = "bold blue"
+
+# Command execution time
+[cmd_duration]
+min_time = 500
+format = "[$duration]($style) "
+style = "yellow"
+
+# Other settings
+[username]
+style_user = "bold green"
+style_root = "bold red"
+format = "[$user]($style) "
+show_always = true
+
+[hostname]
+ssh_only = false
+format = "[$hostname]($style) "
+trim_at = "-"
+style = "bold dimmed white"
+
+# Package version (optional)
+[package]
+format = "[$symbol$version]($style) "
+symbol = "📦 "
+style = "208"
+display_private = true
+
