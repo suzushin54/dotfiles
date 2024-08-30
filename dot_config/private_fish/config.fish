@@ -16,6 +16,7 @@ fish_add_path /usr/local/go/bin
 fish_add_path /usr/local/bin/protoc
 fish_add_path $HOME/.local/share/mise/installs/terraform/1.8.4/bin
 fish_add_path $HOME/development/flutter/bin
+fish_add_path $HOME/google-cloud-sdk/bin
 
 # Homebrew
 eval (/opt/homebrew/bin/brew shellenv)
@@ -71,6 +72,11 @@ alias cps "docker compose ps"
 alias cu "docker compose up"
 alias cud "docker compose up -d"
 alias cdn "docker compose down"
+
+# Google Cloud SDK Completion
+if test -f ~/google-cloud-sdk/path.fish.inc
+    source ~/google-cloud-sdk/path.fish.inc
+end
 
 # ghq func
 function ghqcd
