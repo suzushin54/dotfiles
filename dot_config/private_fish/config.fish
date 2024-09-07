@@ -24,6 +24,12 @@ eval (/opt/homebrew/bin/brew shellenv)
 # mise
 mise activate fish | source
 
+# hub
+eval (hub alias -s)
+
+# jump
+status --is-interactive; and source (jump shell fish | psub)
+
 # Editor
 set -x EDITOR /Applications/MacVim.app/Contents/MacOS/Vim
 
