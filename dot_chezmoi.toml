@@ -1,0 +1,33 @@
+[data]
+    email = "mkm.snicr@gmail.com"
+    name = "suzushin54"
+
+[scriptEnv]
+    PATH = "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin"
+
+[edit]
+    command = "vim"
+
+[diff]
+    command = "vimdiff"
+
+[merge]
+    command = "vimdiff"
+
+[git]
+    autoCommit = true
+    autoPush = true
+
+[sourceVCS]
+    autoCommit = true
+    autoPush = true
+
+[data.brew]
+    enable = true
+
+[hooks.read-source-state]
+    command = "brew bundle dump --file=- --all"
+
+[hooks.apply]
+    command = "brew bundle cleanup --force && brew bundle install"
+
