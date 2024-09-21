@@ -1,5 +1,17 @@
 set -x LANG ja_JP.UTF-8
 
+# fzf settings
+set -g FZF_COMPLETE 1
+set -x FZF_DEFAULT_OPTS "--height 40% --layout=reverse --border --inline-info --preview 'bat --style=numbers --color=always --line-range :500 {}' --preview-window=right:60%"
+fzf_configure_bindings --directory=\cf --git_status=\cs --history=\cr --variables=\cv
+
+function fzf_search_history
+    history merge
+    history -z | fzf --read0 --print0 -q (commandline) | read -lz result
+    and commandline -- $result
+end
+
+bind \cr fzf_search_history
 fish_add_path /usr/local/bin
 fish_add_path /usr/local/sbin
 fish_add_path /opt/homebrew/bin
@@ -93,20 +105,10 @@ function ghqcd
     end
 end
 
-# fish history
-function fish_user_key_bindings
-    bind \cr 'peco_select_history (commandline -b)'
-end
-
 # exec eza after cd
 function cd
     builtin cd $argv
     eza --color-scale --git --git-ignore --time-style=iso -a -T -F -h -l -L=1
-end
-
-# Peco key binding
-function fish_user_key_bindings
-    bind \cr peco_select_history
 end
 
 starship init fish | source
