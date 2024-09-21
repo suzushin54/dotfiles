@@ -2,16 +2,27 @@ set -x LANG ja_JP.UTF-8
 
 # fzf settings
 set -g FZF_COMPLETE 1
-set -x FZF_DEFAULT_OPTS "--height 40% --layout=reverse --border --inline-info --preview 'bat --style=numbers --color=always --line-range :500 {}' --preview-window=right:60%"
-fzf_configure_bindings --directory=\cf --git_status=\cs --history=\cr --variables=\cv
+set -x FZF_DEFAULT_OPTS "--height 40% --layout=reverse --border --inline-info --preview 'echo {}' --preview-window=right:50%:wrap"
+fzf_configure_bindings --directory=\cf --git_status=\cs --variables=\cv
 
 function fzf_search_history
     history merge
-    history -z | fzf --read0 --print0 -q (commandline) | read -lz result
-    and commandline -- $result
+    history --null --show-time="%Y-%m-%d %H:%M:%S | " |
+        fzf --read0 --print0 --tiebreak=index --query=(commandline) \
+            --preview 'echo {}' \
+            --preview-window=right:50%:wrap \
+            --prompt='History > ' \
+            --height=50% \
+            --layout=reverse \
+            --border rounded \
+            --info=inline \
+            --color='header:italic:underline' |
+        read -lz result
+    and commandline -- (string replace -r '^[0-9 :-]+ \| ' '' -- $result)
+    commandline -f repaint
 end
-
 bind \cr fzf_search_history
+
 fish_add_path /usr/local/bin
 fish_add_path /usr/local/sbin
 fish_add_path /opt/homebrew/bin
