@@ -23,6 +23,8 @@ function fzf_search_history
 end
 bind \cr fzf_search_history
 
+fish_add_path --move --prepend /opt/homebrew/opt/ruby/bin
+fish_add_path --move --prepend /opt/homebrew/lib/ruby/gems/3.3.0/bin
 fish_add_path /usr/local/bin
 fish_add_path /usr/local/sbin
 fish_add_path /opt/homebrew/bin
