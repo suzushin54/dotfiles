@@ -21,7 +21,20 @@ function fzf_search_history
     and commandline -- (string replace -r '^[0-9 :-]+ \| ' '' -- $result)
     commandline -f repaint
 end
-bind \cr fzf_search_history
+
+function fzf-cd-widget
+    set -l dir (fd --type d | fzf --preview 'tree -L 1 {}')
+    if test $status -eq 0
+        cd $dir
+        commandline -f repaint
+    end
+end
+
+function fish_user_key_bindings
+    fzf_key_bindings
+    bind \cr fzf_search_history
+    bind \cf fzf-cd-widget
+end
 
 fish_add_path --move --prepend /opt/homebrew/opt/ruby/bin
 fish_add_path --move --prepend /opt/homebrew/lib/ruby/gems/3.3.0/bin
