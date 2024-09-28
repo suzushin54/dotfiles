@@ -1,6 +1,7 @@
 set -x LANG ja_JP.UTF-8
 
 # fzf settings
+fzf --fish | source
 set -g FZF_COMPLETE 1
 set -x FZF_DEFAULT_OPTS "--height 40% --layout=reverse --border --inline-info --preview 'echo {}' --preview-window=right:50%:wrap"
 fzf_configure_bindings --directory=\cf --git_status=\cs --variables=\cv
