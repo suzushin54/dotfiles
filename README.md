@@ -12,38 +12,44 @@ This repository contains my personal dotfiles managed with [chezmoi](https://www
 To set up a new machine with these dotfiles, follow these steps:
 
 1. Install Homebrew:
-   \```bash
-   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-   \```
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
 
 2. Install chezmoi:
-   \```bash
-   brew install chezmoi
-   \```
+
+```bash
+brew install chezmoi
+```
 
 3. Initialize chezmoi with this repository:
-   \```bash
-   chezmoi init https://github.com/suzushin54/dotfiles.git
-   \```
+
+```bash
+chezmoi init https://github.com/suzushin54/dotfiles.git
+```
 
 4. Apply the dotfiles:
-   \```bash
-   chezmoi apply -v
-   \```
+
+```bash
+chezmoi apply -v
+```
 
 After applying the dotfiles, you may need to:
 
 1. Install Fish shell:
-   \```bash
-   brew install fish
-   echo /opt/homebrew/bin/fish | sudo tee -a /etc/shells
-   chsh -s /opt/homebrew/bin/fish
-   \```
+
+```bash
+brew install fish
+echo /opt/homebrew/bin/fish | sudo tee -a /etc/shells
+chsh -s /opt/homebrew/bin/fish
+```
 
 2. Set up fzf for Fish:
-   \```fish
-   fzf --fish | source
-   \```
+
+```fish
+fzf --fish | source
+```
 
 
 ## Customizing
@@ -51,22 +57,25 @@ After applying the dotfiles, you may need to:
 To make changes to the dotfiles:
 
 1. Edit the source files in the chezmoi directory:
-   \```bash
-   chezmoi edit ~/.config/fish/config.fish
-   \```
+
+```bash
+chezmoi edit ~/.config/fish/config.fish
+```
 
 2. Apply the changes:
-   \```bash
-   chezmoi apply
-   \```
+
+```bash
+chezmoi apply
+```
 
 3. Commit and push your changes to the repository:
-   \```bash
-   chezmoi cd
-   git add .
-   git commit -m "Update dotfiles"
-   git push
-   \```
+
+```bash
+chezmoi cd
+git add .
+git commit -m "Update dotfiles"
+git push
+```
 
 ## Troubleshooting
 
