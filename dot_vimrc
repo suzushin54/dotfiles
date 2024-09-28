@@ -1,5 +1,4 @@
 " setting
-"文字コードをUFT-8に設定
 set fenc=utf-8
 " バックアップファイルを作らない
 set nobackup
@@ -12,8 +11,8 @@ set hidden
 " 入力中のコマンドをステータスに表示する
 set showcmd
 
-set nocompatible              " be iMproved, required
-filetype off                  " required
+set nocompatible
+filetype off
 
 " netrw
 filetype plugin on
@@ -41,10 +40,14 @@ Plugin 'leafgarland/typescript-vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'fatih/vim-go'
+Plugin 'cocopon/iceberg.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+syntax on
+colorscheme iceberg
 
 " Customize the key mapping
 map K <Plug>(expand_region_expand)
