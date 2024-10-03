@@ -35,6 +35,7 @@ function fish_user_key_bindings
     fzf_key_bindings
     bind \cr fzf_search_history
     bind \cf fzf-cd-widget
+    bind \cg fzf-cd-and-open
 end
 
 fish_add_path --move --prepend /opt/homebrew/opt/ruby/bin
@@ -136,6 +137,14 @@ end
 function cd
     builtin cd $argv
     eza --color-scale --git --git-ignore --time-style=iso -a -T -F -h -l -L=1
+end
+
+function fzf-cd-and-open
+    set -l dir (fd --type d | fzf --preview 'tree -L 1 {}')
+    if test $status -eq 0
+        cd $dir
+        eza --color-scale --git --git-ignore --time-style=iso -a -T -F -h -l -L=1
+    end
 end
 
 starship init fish | source
