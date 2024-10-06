@@ -57,6 +57,7 @@ fish_add_path /usr/local/bin/protoc
 fish_add_path $HOME/.local/share/mise/installs/terraform/1.8.4/bin
 fish_add_path $HOME/development/flutter/bin
 fish_add_path $HOME/google-cloud-sdk/bin
+fish_add_path $HOME/.pub-cache/bin
 
 # Homebrew
 eval (/opt/homebrew/bin/brew shellenv)
