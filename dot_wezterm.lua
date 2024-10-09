@@ -22,6 +22,12 @@ config.window_padding = {
   bottom = 2,
 }
 
+local mux = wezterm.mux
+wezterm.on("gui-startup", function(cmd)
+    local tab, pane, window = mux.spawn_window(cmd or {})
+    window:gui_window():toggle_fullscreen()
+end)
+
 -- Tab bar
 config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
