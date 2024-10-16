@@ -152,3 +152,13 @@ starship init fish | source
 
 direnv hook fish | source
 
+function aws-token
+    set profile_name $argv[1]
+    set code $argv[2]
+    set mfa_device (awk '/'$profile_name'/{flag=1;next}/\[/{flag=0}flag' ~/.aws/config | grep mfa-device | cut -f 3 -d " ")
+    set session_token (aws sts get-session-token --serial-number $mfa_device --token-code $code --profile $profile_name)
+    set -gx AWS_ACCESS_KEY_ID (echo $session_token | jq -r .Credentials.AccessKeyId)
+    set -gx AWS_SECRET_ACCESS_KEY (echo $session_token | jq -r .Credentials.SecretAccessKey)
+    set -gx AWS_SESSION_TOKEN (echo $session_token | jq -r .Credentials.SessionToken)
+end
+
