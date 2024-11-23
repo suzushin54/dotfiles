@@ -52,6 +52,7 @@ fish_add_path $HOME/.composer/vendor/bin
 fish_add_path $HOME/pear/bin
 fish_add_path $HOME/.cargo/bin
 fish_add_path $HOME/go/bin
+fish_add_path $GOPATH/bin
 fish_add_path /usr/local/go/bin
 fish_add_path /usr/local/bin/protoc
 fish_add_path $HOME/.local/share/mise/installs/terraform/1.8.4/bin

@@ -44,6 +44,7 @@ config.keys = {
     mods = 'CMD',
     action = wezterm.action.CloseCurrentTab{confirm=true},
   },
+  { key = "w", mods = "ALT", action = wezterm.action.HideApplication },
 }
 
 -- Hotkey configuration
