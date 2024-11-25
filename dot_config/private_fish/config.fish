@@ -32,16 +32,32 @@ function fzf-cd-widget
 end
 
 function __auto_cd_or_execute
-    if test -d (commandline -ct)
-        set dir (commandline -ct)
+    set input (commandline -ct)
+
+    # If input contains spaces, treat it as a command
+    if test (count (string split " " -- $input)) -gt 1
+        commandline -f execute
+        return
+    end
+
+    # If input is a valid command, execute it
+    if type -q $input
+        commandline -f execute
+        return
+    end
+
+    # If input is a single word and a directory, execute `cd` to change directory
+    if test (count $input) -eq 1 -a -d $input
         commandline ""
         printf "\n"
-        cd $dir
+        cd $input
         printf "\n\n"
         commandline -f repaint
-    else
-        commandline -f execute
+        return
     end
+
+    # Otherwise, execute the input as a command
+    commandline -f execute
 end
 
 function fish_user_key_bindings
