@@ -31,7 +31,21 @@ function fzf-cd-widget
     end
 end
 
+function __auto_cd_or_execute
+    if test -d (commandline -ct)
+        set dir (commandline -ct)
+        commandline ""
+        printf "\n"
+        cd $dir
+        printf "\n\n"
+        commandline -f repaint
+    else
+        commandline -f execute
+    end
+end
+
 function fish_user_key_bindings
+    bind \r __auto_cd_or_execute
     fzf_key_bindings
     bind \cr fzf_search_history
     bind \cf fzf-cd-widget
