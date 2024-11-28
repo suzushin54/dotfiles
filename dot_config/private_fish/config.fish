@@ -143,6 +143,11 @@ alias gs "git switch"
 alias gr "git restore"
 alias gcp "git cherry-pick"
 
+alias log="tig"
+alias log-all="tig --all"
+alias stat="tig status"
+alias branch="tig refs"
+
 # docker aliases
 alias dps "docker ps"
 alias compose "docker compose"
