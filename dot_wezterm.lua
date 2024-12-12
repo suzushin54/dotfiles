@@ -33,28 +33,12 @@ config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
 
 -- Key bindings
-config.keys = {
-  {
-    key = 't',
-    mods = 'CMD',
-    action = wezterm.action.SpawnTab 'CurrentPaneDomain',
-  },
-  {
-    key = 'w',
-    mods = 'CMD',
-    action = wezterm.action.CloseCurrentTab{confirm=true},
-  },
-  { key = "w", mods = "ALT", action = wezterm.action.HideApplication },
-}
-
--- Hotkey configuration
 config.leader = { key = 'Space', mods = 'OPT', timeout_milliseconds = 1000 }
 config.keys = {
-  {
-    key = 'Space',
-    mods = 'LEADER|OPT',
-    action = wezterm.action.ToggleFullScreen,
-  },
+  { key = 't', mods = 'CMD', action = wezterm.action.SpawnTab 'CurrentPaneDomain' },
+  { key = 'w', mods = 'CMD', action = wezterm.action.CloseCurrentTab{confirm=true} },
+  { key = "h", mods = "CMD|ALT", action = wezterm.action.HideApplication },
+  { key = "f", mods = "CMD|CTRL", action = wezterm.action.ToggleFullScreen },
 }
 
 -- Set initial position and size (adjust as needed)
