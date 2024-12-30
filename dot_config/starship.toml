@@ -13,7 +13,6 @@ $golang\
 $rust\
 $nodejs\
 $aws\
-$gcloud\
 $cmd_duration\
 $memory_usage\
 $line_break\
@@ -57,11 +56,11 @@ symbol = " "
 format = '[$symbol($version )]($style)'
 
 [golang]
-symbol = " "
+symbol = "🐭 "
 format = '[$symbol($version )]($style)'
 
 [rust]
-symbol = " "
+symbol = "🦀 "
 format = '[$symbol($version )]($style)'
 
 [nodejs]
@@ -107,7 +106,7 @@ display_private = true
 
 [memory_usage]
 threshold = 1
-format = 'via $symbol[$ram]($style) '
+format = ' $symbol[$ram]($style) '
 symbol = '🐏'
 style = "bold yellow"
 disabled = false  
