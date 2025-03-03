@@ -68,6 +68,7 @@ function fish_user_key_bindings
     bind \cg fzf-cd-and-open
 end
 
+fish_add_path --move --prepend $HOME/.cargo/bin
 fish_add_path --move --prepend /opt/homebrew/opt/ruby/bin
 fish_add_path --move --prepend /opt/homebrew/lib/ruby/gems/3.3.0/bin
 fish_add_path /usr/local/bin
@@ -80,7 +81,6 @@ fish_add_path /opt/homebrew/opt/php@8.2/bin
 fish_add_path /opt/homebrew/opt/php@8.2/sbin
 fish_add_path $HOME/.composer/vendor/bin
 fish_add_path $HOME/pear/bin
-fish_add_path $HOME/.cargo/bin
 fish_add_path $HOME/go/bin
 fish_add_path $GOPATH/bin
 fish_add_path /usr/local/go/bin
