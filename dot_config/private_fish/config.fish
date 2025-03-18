@@ -158,6 +158,8 @@ alias cu "docker compose up"
 alias cud "docker compose up -d"
 alias cdn "docker compose down"
 
+alias chrome-dev="open -a \"Google Chrome\" --args --auto-open-devtools-for-tabs"
+
 # Google Cloud SDK Completion
 if test -f ~/google-cloud-sdk/path.fish.inc
     source ~/google-cloud-sdk/path.fish.inc
