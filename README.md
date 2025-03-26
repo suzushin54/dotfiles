@@ -49,8 +49,19 @@ chsh -s /opt/homebrew/bin/fish
 
 ```fish
 fzf --fish | source
+
+curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
+
+fisher install PatrickF1/fzf.fish
 ```
 
+3. Set up vim and plugins
+
+```fish
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+vim +PluginInstall +qall
+```
 
 ## Customizing
 
