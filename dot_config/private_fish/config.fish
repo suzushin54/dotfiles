@@ -91,6 +91,7 @@ fish_add_path $HOME/.local/share/mise/installs/terraform/1.8.4/bin
 fish_add_path $HOME/development/flutter/bin
 fish_add_path $HOME/google-cloud-sdk/bin
 fish_add_path $HOME/.pub-cache/bin
+fish_add_path $HOME/.lmstudio/bin
 
 # Homebrew
 eval (/opt/homebrew/bin/brew shellenv)
@@ -105,7 +106,7 @@ eval (hub alias -s)
 status --is-interactive; and source (jump shell fish | psub)
 
 # Editor
-set -x EDITOR /Applications/MacVim.app/Contents/MacOS/Vim
+set -x EDITOR nvim
 
 # Golang
 set -x GOPATH $HOME/go
@@ -126,7 +127,7 @@ alias ll "eza --color-scale --git --git-ignore --time-style=iso -a -T -F -h -l -
 alias rm "rm -i"
 alias cp "cp -i"
 alias mv "mv -i"
-alias vi "vim"
+alias vi "nvim"
 alias cat "cat -n"
 alias less "less -NM"
 
@@ -201,4 +202,8 @@ function aws-token
     set -gx AWS_SECRET_ACCESS_KEY (echo $session_token | jq -r .Credentials.SecretAccessKey)
     set -gx AWS_SESSION_TOKEN (echo $session_token | jq -r .Credentials.SessionToken)
 end
+
+# Added by OrbStack: command-line tools and integration
+# This won't be added again if you remove it.
+source ~/.orbstack/shell/init2.fish 2>/dev/null || :
 
