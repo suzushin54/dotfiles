@@ -106,7 +106,8 @@ eval (hub alias -s)
 status --is-interactive; and source (jump shell fish | psub)
 
 # Editor
-set -x EDITOR nvim
+set -gx EDITOR nvim
+set -gx VISUAL nvim
 
 # Golang
 set -x GOPATH $HOME/go
@@ -127,7 +128,7 @@ alias ll "eza --color-scale --git --git-ignore --time-style=iso -a -T -F -h -l -
 alias rm "rm -i"
 alias cp "cp -i"
 alias mv "mv -i"
-alias vi "nvim"
+#alias vi "nvim"
 alias cat "cat -n"
 alias less "less -NM"
 
@@ -160,6 +161,13 @@ alias cud "docker compose up -d"
 alias cdn "docker compose down"
 
 alias chrome-dev="open -a \"Google Chrome\" --args --auto-open-devtools-for-tabs"
+
+abbr v "nvim"
+abbr vi "nvim"
+abbr vimdiff "nvim -d"
+
+type -q rg; or echo "Install ripgrep for faster search: brew install ripgrep"
+type -q fd; or echo "Install fd for faster file discovery: brew install fd"
 
 # Google Cloud SDK Completion
 if test -f ~/google-cloud-sdk/path.fish.inc
