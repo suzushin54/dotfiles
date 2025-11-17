@@ -34,7 +34,7 @@ function fzf-cd-widget
 end
 
 function __auto_cd_or_execute
-    set input (commandline -ct)
+    set input (commandline)
 
     # If input contains spaces, treat it as a command
     if test (count (string split " " -- $input)) -gt 1
@@ -42,14 +42,14 @@ function __auto_cd_or_execute
         return
     end
 
-    # If input is a valid command, execute it
+    # If input is a valid command, execute it 
     if type -q $input
         commandline -f execute
         return
     end
 
     # If input is a single word and a directory, execute `cd` to change directory
-    if test (count $input) -eq 1 -a -d $input
+    if test -d $input
         commandline ""
         printf "\n"
         cd $input
