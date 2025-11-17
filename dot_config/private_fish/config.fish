@@ -183,11 +183,12 @@ function ghqcd
     end
 end
 
+# Disabled: Auto-executing eza after cd causes noise when AI tools run cd commands
 # exec eza after cd
-function cd
-    builtin cd $argv
-    eza --color-scale --git --git-ignore --time-style=iso -a -T -F -h -l -L=1
-end
+#function cd
+#    builtin cd $argv
+#    eza --color-scale --git --git-ignore --time-style=iso -a -T -F -h -l -L=1
+#end
 
 function fzf-cd-and-open
     set -l dir (fd --type d | fzf --preview 'tree -L 1 {}')
