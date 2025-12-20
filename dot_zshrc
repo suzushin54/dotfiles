@@ -100,8 +100,8 @@ setopt auto_pushd
 # pushdから重複を削除
 setopt pushd_ignore_dups
 
-# cdの後にexaを実行
-chpwd() { exa --color-scale --git --git-ignore --time-style=iso -@ -a -B -T -F -h -l -L=1 }
+# cdの後にezaを実行
+chpwd() { eza --color-scale --git --git-ignore --time-style=iso -@ -a -B -T -F -h -l -L=1 }
 
 # コマンドのスペルを訂正
 setopt correct
@@ -129,8 +129,8 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
-alias ls='exa --color-scale --git --git-ignore --time-style=iso -@ -a -B -T -F -h -l -L=1'
-alias ll='exa --color-scale --git --git-ignore --time-style=iso -@ -a -B -T -F -h -l -L=1'
+alias ls='eza --color-scale --git --git-ignore --time-style=iso -@ -a -B -T -F -h -l -L=1'
+alias ll='eza --color-scale --git --git-ignore --time-style=iso -@ -a -B -T -F -h -l -L=1'
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'

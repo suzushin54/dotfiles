@@ -25,3 +25,6 @@ map("n", "<leader>fs", "<cmd>Telescope lsp_document_symbols<cr>", { desc="Symbol
 -- ファイラー（oil）
 map("n", "-", "<cmd>Oil<cr>", { desc = "Open parent directory (oil)" })
 
+-- ファイルツリー(nvim-tree)
+map("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "Toggle file tree" })
+map("n", "<leader>ef", "<cmd>NvimTreeFindFile<cr>", { desc = "Find file in tree" })
