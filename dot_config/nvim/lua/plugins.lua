@@ -2,6 +2,21 @@ return {
   -- File explorer
   { "stevearc/oil.nvim", opts = {}, dependencies = { "nvim-tree/nvim-web-devicons" } },
 
+  -- Snacks explorer: show hidden/gitignored files
+  {
+    "folke/snacks.nvim",
+    opts = {
+      picker = {
+        sources = {
+          explorer = {
+            hidden = true,
+            ignored = true,
+          },
+        },
+      },
+    },
+  },
+
   -- File tree
   {
     "nvim-tree/nvim-tree.lua",
@@ -19,6 +34,7 @@ return {
         },
         filters = {
           dotfiles = false,
+          git_ignored = false,
         },
         actions = {
           open_file = {
@@ -63,22 +79,10 @@ return {
     end,
   },
 
-  -- LSP サーバー管理
-  {
-    "mason-org/mason.nvim",
-    config = function()
-      require("mason").setup()
-    end,
-  },
-  {
-    "mason-org/mason-lspconfig.nvim",
-    dependencies = { "mason-org/mason.nvim" },
-    config = function()
-      require("mason-lspconfig").setup({
-        ensure_installed = { "gopls", "ts_ls" },
-      })
-    end,
-  },
+  -- Disable mason: LSP servers are installed via Homebrew (gopls, typescript-language-server)
+  -- to avoid pulling prebuilt binaries from a third-party registry.
+  { "mason-org/mason.nvim", enabled = false },
+  { "mason-org/mason-lspconfig.nvim", enabled = false },
 
   -- LSP settings
   {
@@ -126,5 +130,22 @@ return {
       })
       vim.lsp.enable('ts_ls')
     end,
+  },
+
+  -- Force blink.cmp to use the pure-Lua fuzzy matcher instead of downloading a
+  -- prebuilt Rust binary from GitHub releases.
+  {
+    "saghen/blink.cmp",
+    opts = {
+      fuzzy = { implementation = "lua" },
+    },
+  },
+
+  -- In-buffer markdown rendering
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
+    ft = { "markdown" },
+    opts = {},
   },
 }

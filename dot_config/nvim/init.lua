@@ -26,10 +26,7 @@ vim.g.lazyvim_check_deprecations = false
 require("lazy").setup({
   spec = {
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
-    -- Language extras (must come before custom plugins)
-    { import = "lazyvim.plugins.extras.lang.go" },
-    { import = "lazyvim.plugins.extras.lang.typescript" },
-    -- Custom plugins
+    -- Custom plugins (LSP/treesitter for go/typescript handled directly to avoid mason dependency)
     { import = "plugins" },
   },
   defaults = {
