@@ -62,12 +62,42 @@ function __auto_cd_or_execute
     commandline -f execute
 end
 
+# vi mode: normal モードで w/b/e(大文字は空白区切り)・dw/db 等の単語移動が
+# そのまま使える。行内の長いコマンドを vim と同じ操作感で編集するのが狙い。
+# 各モードでカーソル形状を変えて、今どのモードか一目で分かるようにする。
+set -g fish_cursor_default block      # normal / visual: ブロック(■)
+set -g fish_cursor_insert line        # insert: 縦線(|)
+set -g fish_cursor_replace_one underscore
+set -g fish_cursor_visual block
+
 function fish_user_key_bindings
-    bind \r __auto_cd_or_execute
+    # まず vi キーバインドを土台として読み込む。
+    # これ以降の bind は、この上に重ねる形になる。
+    fish_vi_key_bindings
+
+    # --- muscle memory 維持: emacs 系ショートカットを insert モードに温存 ---
+    # Ctrl+A/E は行頭/行末(既に手に馴染んでいるやつ)。
+    # Ctrl+W は fzf の履歴検索ではなく従来通り「直前の単語を削除」に残す。
+    bind --mode insert ctrl-a beginning-of-line
+    bind --mode insert ctrl-e end-of-line
+    bind --mode insert ctrl-w backward-kill-word
+
+    # --- 既存のカスタム/ fzf 連携を再適用 ---
+    # 重要: vi mode ではモード無指定の bind は normal モード側に入るため、
+    # insert 入力中に効かせたいものは --mode insert を明示する必要がある。
+    # Enter(\r) はまさにこれで、明示しないと入力中に実行できなくなる。
+    bind --mode insert \r __auto_cd_or_execute
+    bind --mode default \r __auto_cd_or_execute
+
+    # junegunn/fzf の fish 連携(Ctrl+T によるファイル挿入など)
     fzf_key_bindings
-    bind \cr fzf_search_history
-    bind \cf fzf-cd-widget
-    bind \cg fzf-cd-and-open
+
+    # 自前 / fzf.fish 由来のウィジェット(insert・normal 両モードに登録)
+    for mode in insert default
+        bind --mode $mode \cr fzf_search_history
+        bind --mode $mode \cf fzf-cd-widget
+        bind --mode $mode \cg fzf-cd-and-open
+    end
 end
 
 fish_add_path --move --prepend $HOME/.cargo/bin
@@ -98,6 +128,9 @@ eval (/opt/homebrew/bin/brew shellenv)
 
 # mise
 mise activate fish | source
+
+# git-wt
+type -q git-wt; and git wt --init fish | source
 
 # hub
 eval (hub alias -s)
