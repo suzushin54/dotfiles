@@ -103,6 +103,7 @@ end
 fish_add_path --move --prepend $HOME/.cargo/bin
 fish_add_path --move --prepend /opt/homebrew/opt/ruby/bin
 fish_add_path --move --prepend /opt/homebrew/lib/ruby/gems/3.3.0/bin
+fish_add_path --move --prepend $HOME/.local/bin
 fish_add_path /usr/local/bin
 fish_add_path /usr/local/sbin
 fish_add_path /opt/homebrew/bin
@@ -149,8 +150,8 @@ set -x GOPATH $HOME/go
 direnv hook fish | source
 
 # basic aliase
-alias md "mkdir"
-alias cls "clear"
+alias md mkdir
+alias cls clear
 alias .. "cd .."
 alias ... "cd ../.."
 alias .... "cd ../../.."
@@ -195,8 +196,8 @@ alias cdn "docker compose down"
 
 alias chrome-dev="open -a \"Google Chrome\" --args --auto-open-devtools-for-tabs"
 
-abbr v "nvim"
-abbr vi "nvim"
+abbr v nvim
+abbr vi nvim
 abbr vimdiff "nvim -d"
 
 type -q rg; or echo "Install ripgrep for faster search: brew install ripgrep"
@@ -248,4 +249,3 @@ end
 # Added by OrbStack: command-line tools and integration
 # This won't be added again if you remove it.
 source ~/.orbstack/shell/init2.fish 2>/dev/null || :
-
